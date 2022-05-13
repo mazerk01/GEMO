@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { NgForm } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { Barcode } from "./barcode.model";
 import { NotificheService } from "./notifiche.service";
