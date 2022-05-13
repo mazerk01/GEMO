@@ -1,0 +1,23 @@
+Icone: https://icons.getbootstrap.com/
+
+Settings gradiente bottoni: https://imgur.com/a/5sFYVAf	 (colori non sono quelli giusti)
+
+>>> IMPORTANTE PER LE ICONE (sia categoria che reparti) <<<
+- convertirle da png a jpg 
+- resizarle 65x65 
+- comprimerle 
+- specificare comunque le dimensioni 65x65 anche nel CSS
+
+Icone circolari: https://www.flaticon.com/search?author_id=1&style_id=133&type=standard&word=tobacco
+
+Icone senza cerchio: https://www.flaticon.com/search?author_id=1&style_id=6&type=standard&word=tobacco
+
+Icone reparti: https://www.flaticon.com/packs/numbers-0-to-100-109?word=numbers
+
+Sfondo Header - https://unsplash.com/photos/hN3t9Wj-bNs
+
+Paletta colori - https://coolors.co/palette/04e762-00a3ff-33b5fc-65c7f9-caebf2-efefef-ebebeb-a9a9a9-ff3b3f
+Modal header - # 6D6875
+
+Fonts
+Logo e Navbar - https://fonts.google.com/specimen/Staatliches
