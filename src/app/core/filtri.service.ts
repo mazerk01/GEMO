@@ -39,9 +39,6 @@ export class FiltriService {
   iveTabacchi: IVE[] = [];
   iveGEV: IVE[] = [];
 
-  // per resettare la form
-  inserimentoOk: boolean = false;
-
   // GETta la lista di tutti i tabacchi
   getTabacchi() {
     const url = 'https://gabservizi.it/api-tabacchi/api/tabacchi';

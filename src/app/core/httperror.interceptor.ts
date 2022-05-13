@@ -18,10 +18,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           if (req.url == 'https://gabservizi.it/api-tabacchi/api/Login') this.toastr.success('Benvenuto')
             else {
               if (req.url == 'https://gabservizi.it/api-tabacchi/api/barcode') this.toastr.success(`Barcode inserito`)
-              else {
-                this.toastr.success(`${this.notificheService.getDescrizione()} inserito`);
-                this.filtriService.inserimentoOk = true;
-              }
+              else this.toastr.success(`${this.notificheService.getDescrizione()} inserito`)
             }
         }
         // check per la modifica del prodotto
