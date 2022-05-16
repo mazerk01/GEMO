@@ -6,10 +6,10 @@ import { FiltriService } from 'src/app/core/filtri.service';
   template: `
   <div id="wrapperBody">
     <div id="cardRicerca" class="card">
-      <div class="card-body" style="padding: 0.5em; padding-right: 0;">
+      <div class="card-body" style="padding: 0.5em;">
         <form #f="ngForm">
           <div class="input-group" style="margin-top: 0.1em;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" style="margin-top: 0.5em;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#bfbfbf" class="bi bi-search" viewBox="0 0 16 16" style="margin-top: 0.3em;">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
             </svg>
 
@@ -41,7 +41,7 @@ import { FiltriService } from 'src/app/core/filtri.service';
             </div>
 
             <div class="row">
-              <p style="word-break: break-all;">{{cercaProdotto.descrizione}}</p>
+              <p style="word-break: break-all; color: #00000094;">{{cercaProdotto.descrizione}}</p>
             </div>
           </div>
 
@@ -76,8 +76,33 @@ import { FiltriService } from 'src/app/core/filtri.service';
     border-radius: 10px;
   }
 
+  #casellaRicerca {
+    border: none;
+    background: rgb(255, 255, 255, 0);
+  }
+
+  #flexSwitchCheckDefault {
+    height: 1.7em;
+    width: 3em;
+  }
+
+  /* switch attivo */
+  .form-check-input:checked {
+    background-color: #babdff;
+    border: none;
+  }
+
+  #flexSwitchCheckDefault:hover {
+    border-color: rgb(186 189 255);
+  }
+
+  #flexSwitchCheckDefault:focus {
+    box-shadow: none;
+  }
+
   #listaArticoli {
     margin-top: 1em;
+    border-radius: 10px;
   }
 
   #imgReparto {
