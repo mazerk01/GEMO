@@ -19,10 +19,6 @@ body::-webkit-scrollbar {
   opacity: .97;
 }
 
-/* body.modal-open {
-  padding-right: 0 !important;
-} */
-
 .modal-body label {
   font-weight: 500;
   color: #434141cc;

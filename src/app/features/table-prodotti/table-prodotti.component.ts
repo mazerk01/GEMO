@@ -4,7 +4,6 @@ import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it'
 import { FiltriService } from 'src/app/core/filtri.service';
 import { NotificheService } from 'src/app/core/notifiche.service';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 registerLocaleData(localeIt, 'it');
 

@@ -9,7 +9,7 @@ import { NotificheService } from 'src/app/core/notifiche.service';
 import { Tabacchi } from 'src/app/core/tabacchi.model';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-mobile',
   template: `
   <div class="alert alert-danger mt-5 border-dark" role="alert" id="loginCheck" style="text-align: center; font-size: 2rem; width: 80%; margin: 0 auto 0 auto;" *ngIf="!authService.isAuth()">
     ACCESSO NON AUTORIZZATO
@@ -17,45 +17,41 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
     <button class="btn btn-danger" routerLink="" style="width: 28em;"> Portami alla pagina di Login </button>
   </div>
 
-  <div>
-    <app-modal-edit
+  <app-modal-mobile
+    [insNuovo]="insNuovo"
+    [editBcode0]="editBcode0"
+    [editPezzi0]="editPezzi0"
+    (editBarcodes)="editBarcodes($event)"
+    (settaEditBcode)="settaEditBcode($event)"
+    (closeEditPopup)="closeEditPopup()"
+    (editProdotto)="editProdotto($event)"
+    (addBarcode)="addBarcode($event)"
+    (cancelAddBcode)="cancelAddBcode($event)"
+    (setAddBcode)="setAddBcode()"
+    (delProdotto)="delProdotto($event)"
+    (delGEV)="delGEV($event)"
+  ></app-modal-mobile>
+
+  <!-- contenuto home, nascosto se non si è loggati -->
+  <div *ngIf="authService.isAuth()">
+    <app-header-mobile></app-header-mobile>
+
+    <app-body-mobile
       [insNuovo]="insNuovo"
-      [editBcode0]="editBcode0"
-      [editPezzi0]="editPezzi0"
-      (editBarcodes)="editBarcodes($event)"
-      (settaEditBcode)="settaEditBcode($event)"
-      (closeEditPopup)="closeEditPopup()"
-      (editProdotto)="editProdotto($event)"
-      (addBarcode)="addBarcode($event)"
-      (cancelAddBcode)="cancelAddBcode($event)"
-      (setAddBcode)="setAddBcode()"
-      (delProdotto)="delProdotto($event)"
-      (delGEV)="delGEV($event)"
-    ></app-modal-edit>
+      (openEditPopup)="openEditPopup($event)"
+      (openAddPopup)="openAddPopup()"
+      (openGEVPopup)="openGEVPopup($event)"
+    ></app-body-mobile>
 
-    <!-- contenuto home, nascosto se non si è loggati -->
-    <div *ngIf="authService.isAuth()">
-      <app-navbar></app-navbar>
-
-      <app-widget-reparti></app-widget-reparti>
-
-      <!-- Table -->
-      <app-table-prodotti
-        [insNuovo]="insNuovo"
-        (openEditPopup)="openEditPopup($event)"
-        (openAddPopup)="openAddPopup()"
-        (openGEVPopup)="openGEVPopup($event)"
-      ></app-table-prodotti>
-    </div>
+    <app-menu-mobile></app-menu-mobile>
   </div>
   `,
-  styles: []
+  styles: [
+  ]
 })
-export class HomeComponent implements OnInit {
-  // Per verificare se l'utente vuole inserire un nuovo prodotto o modificarne uno esistente
-  insNuovo: boolean = false;
+export class HomeMobileComponent implements OnInit {
 
-  constructor( private httpClient: HttpClient, public authService: AuthService, public notificheService: NotificheService, public filtriService: FiltriService) { }
+  constructor( public authService: AuthService, public filtriService: FiltriService, public notificheService: NotificheService, private httpClient: HttpClient ) { }
 
   ngOnInit(): void {
     this.filtriService.getTabacchi();
@@ -67,9 +63,7 @@ export class HomeComponent implements OnInit {
     this.filtriService.getIveGEV();
   }
 
-  openAddPopup() {
-    this.insNuovo = true;
-  }
+  insNuovo: boolean = false;
 
   // apertura modal per i tabacchi
   openEditPopup(prodotto: Partial<Tabacchi> ) {
@@ -77,6 +71,10 @@ export class HomeComponent implements OnInit {
     this.filtriService.tabacchiAttivo = prodotto;
     this.notificheService.prodAttivo = this.filtriService.tabacchiAttivo;
     this.filtriService.getBarcodeTabacchi(this.filtriService.tabacchiAttivo.codice as string);
+  }
+
+  openAddPopup() {
+    this.insNuovo = true;
   }
 
   // apertura modal per i GEV
@@ -198,22 +196,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // ***************** CANCELLA *****************
-
-  // Cancella tabacchi
-  delProdotto(prodotto: Partial<Tabacchi>) {
-    const url = `https://gabservizi.it/api-tabacchi/api/tabacchi/${prodotto.id}`;
-
-    const httpOptions = { body: {"id" : prodotto.id} };
-
-    return this.httpClient.delete(url, httpOptions).subscribe( (p) => {
-      this.filtriService.tabacchi = this.filtriService.tabacchi.filter( item => item.id != this.filtriService.tabacchiAttivo.id)
-      this.filtriService.tabacchiAttivo = {};
-      this.filtriService.attivaView = 'articolo';
-      this.ngOnInit();
-    });
-  }
-
   // Cancella GEV
   delGEV(prodotto: Partial<Gev>) {
     const url = `https://gabservizi.it/api-tabacchi/api/gev/${prodotto.id}`;
@@ -228,7 +210,19 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // ***************** BARCODE ******************
+  // Cancella tabacchi
+  delProdotto(prodotto: Partial<Tabacchi>) {
+    const url = `https://gabservizi.it/api-tabacchi/api/tabacchi/${prodotto.id}`;
+
+    const httpOptions = { body: {"id" : prodotto.id} };
+
+    return this.httpClient.delete(url, httpOptions).subscribe( (p) => {
+      this.filtriService.tabacchi = this.filtriService.tabacchi.filter( item => item.id != this.filtriService.tabacchiAttivo.id)
+      this.filtriService.tabacchiAttivo = {};
+      this.filtriService.attivaView = 'articolo';
+      this.ngOnInit();
+    });
+  }
 
   // setta la creazione di un nuovo barcode
   setAddBcode() {
@@ -284,4 +278,5 @@ export class HomeComponent implements OnInit {
       this.filtriService.editBcodeAttiva = false;
     }
   }
+
 }

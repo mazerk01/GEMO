@@ -1,14 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { FiltriService } from 'src/app/core/filtri.service';
-import { Tabacchi } from 'src/app/core/tabacchi.model';
 import { Gev } from 'src/app/core/gev.model';
+import { Tabacchi } from 'src/app/core/tabacchi.model';
 
 @Component({
-  selector: 'app-modal-edit',
+  selector: 'app-modal-mobile',
   template: `
-  <div id="modalEdit" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+  <div id="modalMobile" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -28,12 +27,6 @@ import { Gev } from 'src/app/core/gev.model';
                       <li class="nav-item" *ngIf="!this.filtriService.mostraGEV">
                         <button class="nav-link {{this.filtriService.attivaView == 'barcode' ? 'active' : ''}}" data-bs-toggle="tab" type="button" (click)="this.filtriService.settaFooterBarcode()">Barcodes</button>
                       </li>
-                      <li class="nav-item" *ngIf="!insNuovo">
-                        <button class="nav-link {{this.filtriService.attivaView == 'cancella' ? 'active' : ''}}" data-bs-toggle="tab" type="button" (click)="this.filtriService.settaFooterCancella()">Cancella</button>
-                      </li>
-                      <li class="nav-item">
-                        <button id="closeModal" class="nav-link" type="button" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">Chiudi</button>
-                      </li>
                     </ul>
                   </div>
 
@@ -48,26 +41,27 @@ import { Gev } from 'src/app/core/gev.model';
                 <div class="card-body" style="padding-left: 2em; padding-right: 2em;">
                   <h5 style="font-weight: 700; margin-top: 0.5em;">Dati generali</h5>
 
-                  <div class="row mt-4 mb-4">
-                    <!-- Se si sta modificando un prodotto esistente codice articolo è disabled -->
-                    <div class="col-3" *ngIf="!insNuovo">
+                  <div class="row mt-4 mb-2">
+                    <div class="col-12" *ngIf="!insNuovo">
                       <label>Codice</label>
                       <input type="text" class="form-control" name="codice" [(ngModel)]="this.filtriService.tabacchiAttivo.codice" disabled readonly>
                     </div>
 
-                    <div class="col-3" *ngIf="insNuovo">
+                    <div class="col-12" *ngIf="insNuovo">
                       <label>Codice *</label>
                       <input type="text" class="form-control" name="codice" [(ngModel)]="this.filtriService.tabacchiAttivo.codice" #codice="ngModel" required>
                     </div>
+                  </div>
 
-                    <div class="col-9">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <label>Descrizione *</label>
                       <input type="text" class="form-control" name="desc" [(ngModel)]="this.filtriService.tabacchiAttivo.descrizione" #desc="ngModel" required>
                     </div>
                   </div>
 
-                  <div class="row mb-3">
-                    <div class="col-3">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <div class="input-group">
                         <label class="input-group-text" for="inputGroupSelect01" id="basic-addon1">IVA *&nbsp;&nbsp;</label>
                         <select class="form-select" id="inputGroupSelect01" name="iva" [(ngModel)]="this.filtriService.tabacchiAttivo.iva" #iva="ngModel" required>
@@ -76,8 +70,10 @@ import { Gev } from 'src/app/core/gev.model';
                         </select>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="col-9">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <div class="input-group">
                         <label class="input-group-text" for="inputGroupSelect01" id="basic-addon1">Reparto *&nbsp;&nbsp;</label>
                         <select class="form-select" id="inputGroupSelect01" name="codiceRep" [(ngModel)]="this.filtriService.tabacchiAttivo.codiceReparto" #codiceRep="ngModel" required>
@@ -94,8 +90,8 @@ import { Gev } from 'src/app/core/gev.model';
                 <div class="card-body" style="padding-left: 2em; padding-right: 2em;">
                   <h5 style="font-weight: 700; margin-top: 0.5em;">Prezzi</h5>
 
-                  <div class="row mt-4 mb-3">
-                    <div class="col-3">
+                  <div class="row mt-4 mb-2">
+                    <div class="col-12">
                       <label>Prezzo d'acquisto *</label>
 
                       <div class="input-group">
@@ -103,8 +99,10 @@ import { Gev } from 'src/app/core/gev.model';
                         <span class="input-group-text" id="basic-addon2">€</span>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="col-3">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <label>Prezzo di vendita *</label>
 
                       <div class="input-group">
@@ -112,13 +110,15 @@ import { Gev } from 'src/app/core/gev.model';
                         <span class="input-group-text" id="basic-addon2">€</span>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="col-3">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-6">
                       <label>UM</label>
                       <input type="text" class="form-control text-end" name="um" [ngModel]="this.filtriService.tabacchiAttivo.um | number : '1.2-2'">
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-6">
                       <label>Prezzo UM</label>
                       <div class="input-group">
                         <input type="number" class="form-control text-end" name="pUm" [ngModel]="this.filtriService.tabacchiAttivo.prezzo | number : '1.2-2'">
@@ -127,20 +127,21 @@ import { Gev } from 'src/app/core/gev.model';
                     </div>
                   </div>
 
-                  <div class="row mb-3">
-                    <div class="col-6">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <label>Decorrenza</label>
                       <input class="form-control" type="date" name="dataFutura" [ngModel]="this.filtriService.tabacchiAttivo.dataDecorrenzaModifica | date: 'yyyy-MM-dd'" (ngModelChange)="this.filtriService.tabacchiAttivo.dataDecorrenzaModifica = $event">
                     </div>
+                  </div>
 
-                    <div class="col-6">
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <label>Prezzo futuro</label>
                       <div class="input-group">
                         <input type="number" class="form-control text-end" name="pFuturo" [ngModel]="this.filtriService.tabacchiAttivo.prezzoFuturoModifica | number : '1.2-2'">
                         <span class="input-group-text" id="basic-addon2">€</span>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -151,12 +152,12 @@ import { Gev } from 'src/app/core/gev.model';
 
                   <div class="row mt-4 mb-4">
 
-                    <div class="col-2" style="padding-right: 0;">
+                    <div class="col-3" style="padding-right: 0;">
                       <label>Peso</label>
                       <input type="number" class="form-control text-end" name="peso" [ngModel]="this.filtriService.tabacchiAttivo.peso | number : '1.2-2'" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
                     </div>
 
-                    <div class="col-2" style="padding-left: 0;">
+                    <div class="col-3" style="padding-left: 0;">
                       <label style="margin-left: 0.5em;">Unità</label>
                       <select class="form-select text-start" name="unitaMisura" [(ngModel)]="this.filtriService.tabacchiAttivo.unitaMisura" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
                         <option value="" selected disabled>Scegli...</option>
@@ -165,12 +166,15 @@ import { Gev } from 'src/app/core/gev.model';
                       </select>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-6">
                       <label>Q.tà min</label>
                       <input type="number" class="form-control text-end" name="qt" [(ngModel)]="this.filtriService.tabacchiAttivo.quantitaMinima">
                     </div>
 
-                    <div class="col-6">
+                  </div>
+
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <label>Confezione</label>
                       <input type="text" class="form-control" name="confezione" [(ngModel)]="this.filtriService.tabacchiAttivo.confezione">
                     </div>
@@ -188,6 +192,8 @@ import { Gev } from 'src/app/core/gev.model';
                   I campi con l'asterisco (*) sono obbligatori
                 </div>
               </div>
+
+              <button id="closeModal" class="nav-link" type="button" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">CHIUDI</button>
 
             </div> <!-- contenuto tab-articolo - Tabacchi -->
 
@@ -281,6 +287,8 @@ import { Gev } from 'src/app/core/gev.model';
                   I campi con l'asterisco (*) sono obbligatori
                 </div>
               </div>
+
+              <button id="closeModal" class="nav-link" type="button" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">CHIUDI</button>
 
             </div> <!-- contenuto tab-articolo - GEV -->
 
@@ -864,44 +872,13 @@ import { Gev } from 'src/app/core/gev.model';
     --animate-delay: 1s;
     --animate-duration: 3s;
   }
-
-  /* dispositivi mobile piccoli*/
-  @media all and (min-width: 240px) and (max-width: 320px) {
-    ul {
-      font-size: 11px;
-    }
-  }
-
-   /* dispositivi mobile medi */
-  @media all and (min-width: 321px) and (max-width: 376px) {
-    ul {
-      font-size: 11px;
-    }
-  }
-
-  /* dispositivi mobile grandi */
-  @media all and (min-width: 377px) and (max-width: 480px) {
-    ul {
-      font-size: 11px;
-    }
-  }
-
-  /* laptop extra-piccoli */
-  @media all and (min-width: 769px) and (max-width: 899px) {
-    .modal-dialog {
-      max-width: 95%;
-    }
-  }
-
-  /* laptop piccoli */
-  @media all and (min-width: 900px) and (max-width: 991px) {
-    .modal-dialog {
-      max-width: 81%;
-    }
-  }
-  `]
+  `
+  ]
 })
-export class ModalEditComponent {
+export class ModalMobileComponent {
+
+  constructor( public filtriService: FiltriService ) { }
+
   @Input() insNuovo: boolean = false;
   @Input() editBcode0: string = '';
   @Input() editPezzi0: number = 0;
@@ -914,7 +891,5 @@ export class ModalEditComponent {
   @Output() setAddBcode: EventEmitter<any> = new EventEmitter<any>();
   @Output() delProdotto: EventEmitter<Partial<Tabacchi>> = new EventEmitter<Partial<Tabacchi>>();
   @Output() delGEV: EventEmitter<Partial<Gev>> = new EventEmitter<Partial<Gev>>();
-
-  constructor( public toastr: ToastrService, public filtriService: FiltriService ) { }
 
 }

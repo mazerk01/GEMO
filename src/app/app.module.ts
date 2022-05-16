@@ -21,6 +21,11 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HomeMobileComponent } from './features/home/home-mobile.component';
+import { HeaderMobileComponent } from './features/mobile/header-mobile.component';
+import { HeaderBodyComponent } from './features/mobile/body-mobile.component';
+import { MenuMobileComponent } from './features/mobile/menu-mobile.component';
+import { ModalMobileComponent } from './features/mobile/modal-mobile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { environment } from '../environments/environment';
     SearchFilterPipe,
     SortDirective,
     WidgetRepartiComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeMobileComponent,
+    HeaderMobileComponent,
+    HeaderBodyComponent,
+    MenuMobileComponent,
+    ModalMobileComponent
   ],
   imports: [
     BrowserModule,
