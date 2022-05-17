@@ -16,13 +16,7 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
           <div class="container-fluid" style="padding: 0;">
 
             <div class="row" style="margin-top: 0.5em; margin-bottom: 1.5em;">
-              <div class="col-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                </svg>
-              </div>
-
-              <div class="col-8"></div>
+              <div class="col-10"></div>
 
               <div class="col-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">
@@ -199,14 +193,26 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                 </div>
               </div>
 
-              <div class="row mt-3" style="justify-content: end; padding-left: 1em; padding-right: 1em;">
-                <div class="animate__animated animate__fadeIn" [hidden]="h.invalid">
-                  <button id="bottoneSalva" type="submit" class="btn btn-primary w-100" (click)="editProdotto.emit(h)"> CONFERMA </button>
-                </div>
-
+              <div class="row mb-2">
                 <div [hidden]="h.valid">
                   I campi con l'asterisco (*) sono obbligatori
                 </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-4">
+                  <button id="bottoneElimina" type="button" class="btn btn-primary w-100" data-bs-dismiss="modal" (click)="delProdotto.emit(this.filtriService.tabacchiAttivo)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="col-8">
+                  <button id="bottoneSalva" type="submit" class="btn btn-primary w-100" (click)="editProdotto.emit(h)" [disabled]="h.invalid"> CONFERMA </button>
+                </div>
+
               </div>
 
             </div> <!-- contenuto tab-articolo - Tabacchi -->
@@ -301,14 +307,26 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                 </div>
               </div>
 
-              <div class="row mt-3" style="justify-content: end; padding-left: 1em; padding-right: 1em;">
-                <div class="animate__animated animate__fadeIn" [hidden]="h.invalid">
-                  <button id="bottoneSalva" type="submit" class="btn btn-primary w-100" (click)="editProdotto.emit(h)" > CONFERMA </button>
-                </div>
-
+              <div class="row mb-2">
                 <div [hidden]="h.valid">
                   I campi con l'asterisco (*) sono obbligatori
                 </div>
+              </div>
+
+              <div class="row mt-3">
+
+                <div class="col-4">
+                  <button id="bottoneElimina" type="button" class="btn btn-primary w-100" data-bs-dismiss="modal" (click)="delGEV.emit(this.filtriService.GEVAttivo)" *ngIf="this.filtriService.mostraGEV">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="col-8">
+                  <button id="bottoneSalva" type="submit" class="btn btn-primary w-100" (click)="editProdotto.emit(h)" [disabled]="h.invalid"> CONFERMA </button>
+                </div>
+
               </div>
 
             </div> <!-- contenuto tab-articolo - GEV -->
@@ -730,13 +748,6 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                         </div>
                       </div>
 
-                      <div class="row">
-                        <div class="modal-footer" style="border: none; padding-bottom: 0;">
-                          <button id="bottoneElimina" type="button" class="btn btn-light w-100" data-bs-dismiss="modal" (click)="delProdotto.emit(this.filtriService.tabacchiAttivo)" *ngIf="!this.filtriService.mostraGEV"> ELIMINA </button>
-
-                          <button id="bottoneElimina" type="button" class="btn btn-light w-100" data-bs-dismiss="modal" (click)="delGEV.emit(this.filtriService.GEVAttivo)" *ngIf="this.filtriService.mostraGEV"> ELIMINA </button>
-                        </div>
-                      </div>
                     </div>
                   </div>
 
@@ -798,7 +809,7 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
 
   #bottoneSalva {
     height: 54px;
-    border-radius: 40px;
+    border-radius: 10px;
     background-color: #343434;
     color: white;
     border: none;
@@ -814,7 +825,7 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
     margin-top: 1em;
     height: 54px;
     background-color: #343434;
-    border-radius: 40px;
+    border-radius: 10px;
     color: white;
     letter-spacing: 1.5px;
     font-weight: 700;
@@ -825,8 +836,8 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
   }
 
   #bottoneElimina {
-    height: 46px;
-    border-radius: 40px;
+    height: 54px;
+    border-radius: 10px;
     background-color: #343434;
     color: white;
     border: none;
@@ -840,7 +851,6 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
 
   /* card che wrappa tutta la modal */
   .modal-content {
-    background: #efefef;
     border-radius: 20px;
   }
 

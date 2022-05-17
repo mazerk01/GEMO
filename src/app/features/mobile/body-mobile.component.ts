@@ -9,10 +9,6 @@ import { FiltriService } from 'src/app/core/filtri.service';
       <div class="card-body" style="padding: 0.5em;">
         <form #f="ngForm">
           <div class="input-group" style="margin-top: 0.1em;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#bfbfbf" class="bi bi-search" viewBox="0 0 16 16" style="margin-top: 0.3em;">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-            </svg>
-
             <input id="casellaRicerca" type="search" class="form-control ms-1" placeholder="Cerca..." name="name" [(ngModel)]="searchText">
 
             <div id="wrapperCheckbox" class="form-check form-switch" (click)="this.filtriService.associaBarcodes();">
@@ -102,7 +98,9 @@ import { FiltriService } from 'src/app/core/filtri.service';
   }
 
   #cardRicerca {
-    border-radius: 10px;
+    border-radius: 20px;
+    margin-top: 2em;
+    margin-bottom: 2em;
   }
 
   #casellaRicerca {
@@ -111,8 +109,9 @@ import { FiltriService } from 'src/app/core/filtri.service';
   }
 
   #flexSwitchCheckDefault {
-    height: 1.7em;
-    width: 3em;
+    height: 1.3em;
+    width: 2.6em;
+    margin-top: 0.4em;
   }
 
   /* switch attivo */
@@ -131,7 +130,8 @@ import { FiltriService } from 'src/app/core/filtri.service';
 
   #listaArticoli {
     margin-top: 1em;
-    border-radius: 10px;
+    border-radius: 20px;
+    border: none;
   }
 
   #imgReparto {
