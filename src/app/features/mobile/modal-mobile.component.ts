@@ -16,7 +16,9 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
           <div class="container-fluid" style="padding: 0;">
 
             <div class="row" style="margin-top: 0.5em; margin-bottom: 1.5em;">
-              <div class="col-10"></div>
+              <div class="col-10">
+                <p style="font-size: 1.3em;">{{insNuovo ? 'Nuovo' : 'Modifica'}}</p>
+              </div>
 
               <div class="col-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">
@@ -775,6 +777,7 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
 
   #cardSelettore {
     border-radius: 40px;
+    border: none;
   }
 
   #containerEdit {
