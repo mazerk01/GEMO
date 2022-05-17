@@ -24,27 +24,56 @@ import { FiltriService } from 'src/app/core/filtri.service';
       </div>
     </div>
 
-    <div *ngFor="let cercaProdotto of this.filtriService.cercaTabacchi | searchFilter: searchText | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index" [class.active]="i == currentIndex">
-      <div id="listaArticoli" class="card" (click)="openEditPopup.emit(cercaProdotto)" data-bs-toggle="modal" data-bs-target="#modalMobile">
-        <div class="card-body">
+    <div *ngIf="!this.filtriService.mostraGEV">
+      <div *ngFor="let cercaProdotto of this.filtriService.cercaTabacchi | searchFilter: searchText | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index" [class.active]="i == currentIndex">
+        <div id="listaArticoli" class="card" (click)="openEditPopup.emit(cercaProdotto)" data-bs-toggle="modal" data-bs-target="#modalMobile">
+          <div class="card-body">
 
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-                <img id="imgReparto" src="./assets/images/widgetFiltri/{{cercaProdotto.codiceReparto}}.jpg">
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <img id="imgReparto" src="./assets/images/widgetFiltri/{{cercaProdotto.codiceReparto}}.jpg">
+                </div>
+
+                <div class="col-6" style="display: flex; justify-content: flex-end; margin-top: 0.5em;">
+                  <p style="font-weight: 700;">{{cercaProdotto.prezzoVendita.toFixed(2) | currency: 'EUR' : 'symbol' : '.2-2' : 'it'}}</p>
+                </div>
+
               </div>
 
-              <div class="col-6" style="display: flex; justify-content: flex-end; margin-top: 0.5em;">
-                <p style="font-weight: 700;">{{cercaProdotto.prezzoVendita.toFixed(2) | currency: 'EUR' : 'symbol' : '.2-2' : 'it'}}</p>
+              <div class="row">
+                <p style="word-break: break-all; color: #00000094; margin-bottom: 0;">{{cercaProdotto.descrizione}}</p>
               </div>
-
             </div>
 
-            <div class="row">
-              <p style="word-break: break-all; color: #00000094;">{{cercaProdotto.descrizione}}</p>
-            </div>
           </div>
+        </div>
+      </div>
+    </div>
 
+    <div *ngIf="this.filtriService.mostraGEV">
+      <div *ngFor="let cercaProdotto of this.filtriService.cercaGEV | searchFilter: searchText | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index" [class.active]="i == currentIndex">
+        <div id="listaArticoli" class="card" (click)="openGEVPopup.emit(cercaProdotto)" data-bs-toggle="modal" data-bs-target="#modalMobile">
+          <div class="card-body">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <img id="imgReparto" src="./assets/images/widgetFiltri/{{cercaProdotto.codiceReparto}}.jpg">
+                </div>
+
+                <div class="col-6" style="display: flex; justify-content: flex-end; margin-top: 0.5em;">
+                  <p style="font-weight: 700;">{{cercaProdotto.prezzoVendita.toFixed(2) | currency: 'EUR' : 'symbol' : '.2-2' : 'it'}}</p>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <p style="word-break: break-all; color: #00000094; margin-bottom: 0;">{{cercaProdotto.descrizione}}</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

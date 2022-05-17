@@ -248,8 +248,10 @@ export class HomeComponent implements OnInit {
     if (this.filtriService.editBcodeAttiva == false) {
       if (j.value.bcode0 !== '') {
         const httpBody = { "codiceBarcode": j.value.bcode0, "codiceArticolo": this.filtriService.tabacchiAttivo.codice, "pezziConfezione": j.value.pzxcf0 };
-        this.httpClient.post<Barcode>(url, httpBody).subscribe( b => this.filtriService.barcodes.push(b) );
-        this.filtriService.getBarcodeTabacchi(this.filtriService.tabacchiAttivo.codice as string);
+        this.httpClient.post<Barcode>(url, httpBody).subscribe( b => {
+          this.filtriService.barcodes.push(b);
+          this.filtriService.getBarcodeTabacchi(this.filtriService.tabacchiAttivo.codice as string);
+        } );
       }
       j.reset();
       this.filtriService.addBcodeAttiva = false;

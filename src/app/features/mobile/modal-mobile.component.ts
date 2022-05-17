@@ -15,6 +15,22 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
         <form #h="ngForm">
           <div class="container-fluid" style="padding: 0;">
 
+            <div class="row" style="margin-top: 0.5em; margin-bottom: 1.5em;">
+              <div class="col-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                </svg>
+              </div>
+
+              <div class="col-8"></div>
+
+              <div class="col-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+              </div>
+            </div>
+
             <div class="row mb-1">
 
               <div class="col-12">
@@ -150,7 +166,7 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                 <div class="card-body" style="padding-left: 2em; padding-right: 2em;">
                   <h5 style="font-weight: 700; margin-top: 0.5em;">Peso e confezione</h5>
 
-                  <div class="row mt-4 mb-4">
+                  <div class="row mt-4 mb-2">
 
                     <div class="col-3" style="padding-right: 0;">
                       <label>Peso</label>
@@ -193,8 +209,6 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                 </div>
               </div>
 
-              <button id="closeModal" class="nav-link" type="button" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">CHIUDI</button>
-
             </div> <!-- contenuto tab-articolo - Tabacchi -->
 
             <!-- Contenuto tab Articolo - GEV -->
@@ -204,26 +218,29 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                 <div class="card-body" style="padding-left: 2em; padding-right: 2em;">
                   <h5 style="font-weight: 700; margin-top: 0.5em;">Dati generali</h5>
 
-                  <div class="row mt-4 mb-4">
+                  <div class="row mt-4 mb-2">
                     <!-- Se si sta modificando un prodotto esistente codice articolo è disabled -->
-                    <div class="col-3" *ngIf="!insNuovo">
+                    <div class="col-12" *ngIf="!insNuovo">
                       <label>Codice</label>
                       <input type="text" class="form-control" name="codice" [(ngModel)]="this.filtriService.GEVAttivo.codice" disabled readonly>
                     </div>
 
-                    <div class="col-3" *ngIf="insNuovo">
+                    <div class="col-12" *ngIf="insNuovo">
                       <label>Codice *</label>
                       <input type="text" class="form-control" name="codice" [(ngModel)]="this.filtriService.GEVAttivo.codice" #codice="ngModel" required>
                     </div>
 
-                    <div class="col-9">
+                  </div>
+
+                  <div class="row mt-2 mb-2">
+                    <div class="col-12">
                       <label>Descrizione *</label>
                       <input type="text" class="form-control" name="desc" [(ngModel)]="this.filtriService.GEVAttivo.descrizione" #desc="ngModel" required>
                     </div>
                   </div>
 
-                  <div class="row mb-3">
-                    <div class="col-3">
+                  <div class="row mb-2">
+                    <div class="col-12">
                       <div class="input-group">
                         <label class="input-group-text" for="inputGroupSelect01" id="basic-addon1">IVA *&nbsp;&nbsp;</label>
                         <select class="form-select" id="inputGroupSelect01" name="iva" [(ngModel)]="this.filtriService.GEVAttivo.iva" #iva="ngModel" required>
@@ -232,8 +249,10 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                         </select>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="col-9">
+                  <div class="row mb-2">
+                    <div class="col-12">
                       <div class="input-group">
                         <label class="input-group-text" for="inputGroupSelect01" id="basic-addon1">Reparto *&nbsp;&nbsp;</label>
                         <select class="form-select" id="inputGroupSelect01" name="codiceRep" [(ngModel)]="this.filtriService.GEVAttivo.codiceReparto" #codiceRep="ngModel" required>
@@ -250,8 +269,8 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                 <div class="card-body" style="padding-left: 2em; padding-right: 2em;">
                   <h5 style="font-weight: 700; margin-top: 0.5em;">Prezzi</h5>
 
-                  <div class="row mt-4 mb-3">
-                    <div class="col-4">
+                  <div class="row mt-4 mb-2">
+                    <div class="col-12">
                       <label>Prezzo d'acquisto *</label>
 
                       <div class="input-group">
@@ -260,7 +279,10 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                       </div>
                     </div>
 
-                    <div class="col-4">
+                  </div>
+
+                  <div class="row mb-2">
+                    <div class="col-12">
                       <label>Prezzo di vendita *</label>
 
                       <div class="input-group">
@@ -268,12 +290,13 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                         <span class="input-group-text" id="basic-addon2">€</span>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="col-4">
+                  <div class="row mb-2">
+                    <div class="col-12">
                       <label>UM</label>
                       <input type="text" class="form-control text-end" name="um" [ngModel]="this.filtriService.GEVAttivo.um | number : '1.2-2'">
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -287,8 +310,6 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
                   I campi con l'asterisco (*) sono obbligatori
                 </div>
               </div>
-
-              <button id="closeModal" class="nav-link" type="button" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">CHIUDI</button>
 
             </div> <!-- contenuto tab-articolo - GEV -->
 
@@ -745,10 +766,13 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
     border-radius: 40px;
   }
 
+  #containerEdit {
+    padding: 0;
+  }
+
   #cardListaBarcodes {
     margin-top: 2em;
-    border-radius: 40px;
-    width: 70%;
+    border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
   }
