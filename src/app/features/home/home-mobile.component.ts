@@ -39,11 +39,12 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
     <app-body-mobile
       [insNuovo]="insNuovo"
       (openEditPopup)="openEditPopup($event)"
-      (openAddPopup)="openAddPopup()"
       (openGEVPopup)="openGEVPopup($event)"
     ></app-body-mobile>
 
-    <app-menu-mobile></app-menu-mobile>
+    <app-menu-mobile
+      (openAddPopup)="openAddPopup()"
+    ></app-menu-mobile>
   </div>
   `,
   styles: [

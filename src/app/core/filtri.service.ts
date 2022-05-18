@@ -226,6 +226,22 @@ export class FiltriService {
     })
   }
 
+  // ------------------------------------------------------------- MOBILE ----------------------------------------------------------
+
+  // Reparti
+  attivaModalReparti: boolean = false;
+
+  settaModalReparti() {
+    this.attivaModalReparti = !this.attivaModalReparti;
+  }
+
+  // Conferma delete
+  mobileDelete: boolean = false;
+
+  settaDeleteMobile() {
+    this.mobileDelete = !this.mobileDelete;
+  }
+
   constructor(public toastr: ToastrService, private httpClient: HttpClient, public notificheService: NotificheService) {}
 
 }

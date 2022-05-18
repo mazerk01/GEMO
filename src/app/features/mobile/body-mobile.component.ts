@@ -150,7 +150,6 @@ export class HeaderBodyComponent {
 
   @Input() insNuovo: boolean = false;
   @Output() openEditPopup: EventEmitter<any> = new EventEmitter<any>();
-  @Output() openAddPopup: EventEmitter<any> = new EventEmitter<any>();
   @Output() openGEVPopup: EventEmitter<any> = new EventEmitter<any>();
 
   constructor( public filtriService: FiltriService) { }
