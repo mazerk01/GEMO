@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/core/auth.service';
 
     <div class="container">
       <div class="row">
-        <div class="col-10">
-          Benvenuto, <span style="color: white;">{{authService.getUser()}}</span>
+        <div class="col-10" style="color: #9f9f9f;">
+          Benvenuto, <span style="color: #343434;">{{authService.getUser()}}</span>
         </div>
 
         <div class="col-2">

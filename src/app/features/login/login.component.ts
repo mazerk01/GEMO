@@ -11,9 +11,47 @@ import { Login } from 'src/app/core/login.model';
       &nbsp;
     </div>
 
-    <div id="contenitoreLogin">
+    <div id="contenitoreLoginDesktop">
       <div class="container" style="max-width: 100%;">
         <div class="row" style="position: relative; width: 800px;">
+          <img id="imgLogin" src="./assets/images/sfondi/rocketwoman.png">
+        </div>
+
+        <div class="row">
+          <div class="container-fluid">
+
+            <div class="row">
+              <!-- Login -->
+              <div class="col-12">
+
+                <!-- Form login -->
+                <div id="divForm" class="row">
+                  <form #f="ngForm" id="loginForm" class="rounded rounded-1">
+
+                    <p class="fw-bold">GEMO</p>
+
+                    <div class="input-group mb-2" style="margin-top: 2em;">
+                      <input type="text" class="form-control" placeholder="Username" name="username" [ngModel]>
+                    </div>
+
+                    <div class="input-group">
+                      <input type="password" class="form-control" placeholder="Password" name="password" [ngModel]>
+                    </div>
+
+                    <button id="loginButton" class="btn btn-dark" (click)="this.authService.doLogin(f)">ACCEDI</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div> <!-- container -->
+        </div>
+
+      </div>
+    </div>
+
+    <div id="contenitoreLoginMobile">
+      <div class="container" style="max-width: 100%;">
+        <div class="row" style="position: relative; width: 450px;">
           <img id="imgLogin" src="./assets/images/sfondi/rocketwoman.png">
         </div>
 
@@ -67,7 +105,7 @@ import { Login } from 'src/app/core/login.model';
     margin-bottom: 0;
   }
 
-  #contenitoreLogin {
+  #contenitoreLoginDesktop {
     width: 25%;
     margin: auto;
     margin-top: 11em;
@@ -122,9 +160,35 @@ import { Login } from 'src/app/core/login.model';
     background: linear-gradient(180deg, rgba(252,144,49,1) 0%, rgba(255,91,15,1) 100%);
   }
 
+  @media all and (max-width: 768px) {
+    #contenitoreLoginDesktop {
+      display: none;
+    }
+
+    #imgLogin {
+      position: absolute;
+      top: 0px;
+      left: -70px;
+    }
+
+    .fw-bold {
+      font-size: 2rem;
+    }
+
+    #loginButton {
+      margin-top: 1em;
+    }
+  }
+
+  @media all and (min-width: 769px) {
+    #contenitoreLoginMobile {
+      display: none;
+    }
+  }
+
   /* laptop piccoli */
   @media all and (min-width: 769px) and (max-width: 1024px) {
-    #contenitoreLogin {
+    #contenitoreLoginDesktop {
       width: 50%;
     }
 
@@ -144,7 +208,7 @@ import { Login } from 'src/app/core/login.model';
 
   /* laptop */
   @media all and (min-width: 1025px) and (max-width: 1439px) {
-    #contenitoreLogin {
+    #contenitoreLoginDesktop {
       width: 35%;
     }
 

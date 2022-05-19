@@ -22,7 +22,7 @@ import { FiltriService } from 'src/app/core/filtri.service';
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0;">
                     <div>
-                      Benvenuto, <span style="color: white;">{{authService.getUser()}} &nbsp;</span>
+                      Benvenuto, <span style="color: #343434;">{{authService.getUser()}} &nbsp;</span>
 
                       <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>

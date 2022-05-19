@@ -105,6 +105,7 @@ import { FiltriService } from 'src/app/core/filtri.service';
   #cardReparto {
     margin: 6em 1em 2em;
     border-radius: 20px;
+    border: none;
   }
 
   #bottoneReparto {

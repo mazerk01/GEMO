@@ -10,17 +10,14 @@ import { FiltriService } from 'src/app/core/filtri.service';
         <form #f="ngForm">
           <div class="input-group" style="margin-top: 0.1em;">
             <input id="casellaRicerca" type="search" class="form-control ms-1" placeholder="Cerca..." name="name" [(ngModel)]="searchText">
-
-            <div id="wrapperCheckbox" class="form-check form-switch" (click)="this.filtriService.associaBarcodes();">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
-
           </div>
         </form>
       </div>
     </div>
 
-    <div *ngIf="!this.filtriService.mostraGEV">
+    <p>Articoli</p>
+
+    <div *ngIf="!this.filtriService.mostraGEV" class="animate__animated animate__fadeIn">
       <div *ngFor="let cercaProdotto of this.filtriService.cercaTabacchi | searchFilter: searchText | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index" [class.active]="i == currentIndex">
         <div id="listaArticoli" class="card" (click)="openEditPopup.emit(cercaProdotto)" data-bs-toggle="modal" data-bs-target="#modalMobile">
           <div class="card-body">
@@ -50,7 +47,7 @@ import { FiltriService } from 'src/app/core/filtri.service';
       </div>
     </div>
 
-    <div *ngIf="this.filtriService.mostraGEV">
+    <div *ngIf="this.filtriService.mostraGEV" class="animate__animated animate__fadeIn">
       <div *ngFor="let cercaProdotto of this.filtriService.cercaGEV | searchFilter: searchText | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index" [class.active]="i == currentIndex">
         <div id="listaArticoli" class="card" (click)="openGEVPopup.emit(cercaProdotto)" data-bs-toggle="modal" data-bs-target="#modalMobile">
           <div class="card-body">
