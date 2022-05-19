@@ -99,8 +99,10 @@ import { FiltriService } from 'src/app/core/filtri.service';
 
   #cardRicerca {
     border-radius: 20px;
+    border: none;
     margin-top: 2em;
     margin-bottom: 2em;
+    box-shadow: 0 4px 12px 0 rgb(31 38 135 / 20%);
   }
 
   #casellaRicerca {
