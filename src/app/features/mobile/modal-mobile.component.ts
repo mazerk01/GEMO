@@ -14,13 +14,39 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
 
         <div *ngIf="this.filtriService.attivaModalReparti">
 
+          <div class="container">
+            <div class="row">
+              <div class="col-10">
+                <p>Reparti</p>
+              </div>
+
+              <div class="col-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" data-bs-dismiss="modal" (click)="closeEditPopup.emit()">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
           <!-- Lista reparti (Tabacchi) -->
           <div *ngIf="!this.filtriService.mostraGEV">
 
             <div id="cardReparto" class="card">
               <div class="card-body">
-                <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == 'All' ? 'none' : 'saturate(0)'}" (click)="this.filtriService.settaTutti()">
-                  <img id="imgReparto" src="./assets/images/widgetFiltri/all.jpg">
+                <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == 'All' ? 'none' : 'saturate(0)'}" data-bs-dismiss="modal" (click)="this.filtriService.settaTutti(); closeEditPopup.emit()">
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-4" style="display: flex; align-self: center;">
+                        <img id="imgReparto" src="./assets/images/widgetFiltri/all.jpg">
+                      </div>
+
+                      <div class="col-8" style="display: flex; align-self: center; font-size: 14px;">
+                        TUTTI
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -28,13 +54,24 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
             <div *ngFor="let repartoTabacchi of this.filtriService.repartiTabacchi">
               <div id="cardReparto" class="card">
                 <div class="card-body">
-                  <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == repartoTabacchi.codice ? 'none' : 'saturate(0)'}" (click)="this.filtriService.settaReparto(repartoTabacchi)">
-                    <img id="imgReparto" src="./assets/images/widgetFiltri/{{repartoTabacchi.codice}}.jpg">
+                  <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == repartoTabacchi.codice ? 'none' : 'saturate(0)'}" data-bs-dismiss="modal" (click)="this.filtriService.settaReparto(repartoTabacchi); closeEditPopup.emit()">
+
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-4" style="display: flex; align-self: center;">
+                          <img id="imgReparto" src="./assets/images/widgetFiltri/{{repartoTabacchi.codice}}.jpg">
+                        </div>
+
+                        <div class="col-8" style="display: flex; align-self: center; font-size: 14px;">
+                          {{repartoTabacchi.descrizione}}
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
 
           <!-- Lista reparti (GRATTA E VINCI) -->
@@ -43,8 +80,20 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
             <div id="cardReparto" class="card">
               <div class="card-body">
                 <!-- Tutti i Reparti -->
-                <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == 'All' ? 'none' : 'saturate(0)'}" (click)="this.filtriService.settaTutti()">
-                  <img id="imgReparto" src="./assets/images/widgetFiltri/all.jpg">
+                <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == 'All' ? 'none' : 'saturate(0)'}" data-bs-dismiss="modal" (click)="this.filtriService.settaTutti(); closeEditPopup.emit()">
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-4" style="display: flex; align-self: center;">
+                        <img id="imgReparto" src="./assets/images/widgetFiltri/all.jpg">
+                      </div>
+
+                      <div class="col-8" style="display: flex; align-self: center; font-size: 14px;">
+                        TUTTI
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -52,16 +101,26 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
             <div *ngFor="let repartoGEV of this.filtriService.repartiGEV">
               <div id="cardReparto" class="card">
                 <div class="card-body">
-                  <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == repartoGEV.codice ? 'none' : 'saturate(0)'}" (click)="this.filtriService.settaReparto(repartoGEV)">
-                    <img id="imgReparto" src="./assets/images/widgetFiltri/{{repartoGEV.codice}}.jpg">
+                  <div id="bottoneReparto" [ngStyle]="{'filter' : this.filtriService.cercaReparto == repartoGEV.codice ? 'none' : 'saturate(0)'}" data-bs-dismiss="modal" (click)="this.filtriService.settaReparto(repartoGEV); closeEditPopup.emit()">
+
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-4" style="display: flex; align-self: center;">
+                          <img id="imgReparto" src="./assets/images/widgetFiltri/{{repartoGEV.codice}}.jpg">
+                        </div>
+
+                        <div class="col-8" style="display: flex; align-self: center; font-size: 14px;">
+                          {{repartoGEV.descrizione}}
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
             </div>
 
           </div>
-
-
         </div>
 
         <div *ngIf="!this.filtriService.attivaModalReparti">
@@ -922,6 +981,16 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
   styles: [`
   .list-group-item {
     padding: 0 0.1em 0.1em 0.5em;
+  }
+
+  #cardReparto {
+    margin-bottom: 0.5em;
+    border: none;
+  }
+
+  #imgReparto {
+    width: 46px;
+    height: 46px;
   }
 
   #cardForm {

@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/core/auth.service';
   template: `
   <div id="wrapperHeader">
 
+    <div>&nbsp;</div>
+
     <div class="container">
       <div class="row">
         <div class="col-10">
@@ -24,9 +26,6 @@ import { AuthService } from 'src/app/core/auth.service';
   </div>
   `,
   styles: [`
-  #wrapperHeader {
-    margin: 1em;
-  }
   `
   ]
 })

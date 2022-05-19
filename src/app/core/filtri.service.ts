@@ -231,9 +231,9 @@ export class FiltriService {
   // Reparti
   attivaModalReparti: boolean = false;
 
-  settaModalReparti() {
-    this.attivaModalReparti = !this.attivaModalReparti;
-  }
+  settaModalReparti() { this.attivaModalReparti = true; }
+
+  chiudiModalReparti() { this.attivaModalReparti = false; }
 
   // Conferma delete
   mobileDelete: boolean = false;

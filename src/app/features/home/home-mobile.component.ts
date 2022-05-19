@@ -34,6 +34,7 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
 
   <!-- contenuto home, nascosto se non si è loggati -->
   <div *ngIf="authService.isAuth()">
+
     <app-header-mobile></app-header-mobile>
 
     <app-body-mobile
@@ -45,9 +46,11 @@ import { Tabacchi } from 'src/app/core/tabacchi.model';
     <app-menu-mobile
       (openAddPopup)="openAddPopup()"
     ></app-menu-mobile>
+
   </div>
   `,
-  styles: [
+  styles: [`
+  `
   ]
 })
 export class HomeMobileComponent implements OnInit {
@@ -86,7 +89,12 @@ export class HomeMobileComponent implements OnInit {
   }
 
   closeEditPopup() {
-    this.filtriService.attivaView = 'articolo';
+    // metto setTimeout per estetica (altrimenti quando viene chiusa la modal si vede in 'sottofondo' la view 'articolo')
+    setTimeout(() => {
+      this.filtriService.chiudiModalReparti();
+      this.filtriService.attivaView = 'articolo';
+    }, 500 );
+
     this.filtriService.tabacchiAttivo = {};
     this.filtriService.GEVAttivo = {};
   }

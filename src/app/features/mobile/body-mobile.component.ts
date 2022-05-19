@@ -33,6 +33,9 @@ import { FiltriService } from 'src/app/core/filtri.service';
 
                 <div class="col-6" style="display: flex; justify-content: flex-end; margin-top: 0.5em;">
                   <p style="font-weight: 700;">{{cercaProdotto.prezzoVendita.toFixed(2) | currency: 'EUR' : 'symbol' : '.2-2' : 'it'}}</p>
+
+                  <!-- <span class="badge rounded-pill bg-{{(this.filtriService.giorniDecorrenza(cercaProdotto) <= 0) ? 'dark' : (this.filtriService.giorniDecorrenza(cercaProdotto) > 14) ? 'success' : (this.filtriService.giorniDecorrenza(cercaProdotto) <= 7) ? 'danger' : 'warning' }}"></span> -->
+
                 </div>
 
               </div>
@@ -75,7 +78,7 @@ import { FiltriService } from 'src/app/core/filtri.service';
     </div>
 
     <div class="container">
-      <div class="row" style="margin-top: 1em;">
+      <div class="row" style="margin-top: 3em;">
         <pagination-controls class="my-pagination" (pageChange)="handlePageChange($event)" [maxSize]="5" previousLabel="" nextLabel="" style="text-align: center;"></pagination-controls>
       </div>
 
@@ -131,7 +134,11 @@ import { FiltriService } from 'src/app/core/filtri.service';
   #listaArticoli {
     margin-top: 1em;
     border-radius: 20px;
-    border: none;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    background: rgb(255 255 255);
+    box-shadow: 0 4px 12px 0 rgb(31 38 135 / 20%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   #imgReparto {
