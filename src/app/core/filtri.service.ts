@@ -216,14 +216,25 @@ export class FiltriService {
 
   // Per consentire la ricerca per barcodes che mostra il prodotto
   arrAssociati: Tabacchi[] = [];
+  attivaRicercaBarcodes: boolean = false;
+
+  toggleRicercaBarcodes() {
+    this.attivaRicercaBarcodes = !this.attivaRicercaBarcodes;
+    this.associaBarcodes();
+  }
 
   associaBarcodes() {
-    const arrBarcodes = this.barcodes;
-    this.arrAssociati = this.tabacchi;
+    if (this.attivaRicercaBarcodes) {
+      const arrBarcodes = this.barcodes;
+      this.arrAssociati = this.tabacchi;
 
-    const result = this.arrAssociati.map(p => {
-      return Object.assign(p, arrBarcodes.filter( b => b.codiceArticolo == p.codice));
-    })
+      const result = this.arrAssociati.map(p => {
+        return Object.assign(p, arrBarcodes.filter( b => b.codiceArticolo == p.codice));
+      })
+    } else {
+      this.arrAssociati = this.tabacchi;
+    }
+
   }
 
   // ------------------------------------------------------------- MOBILE ----------------------------------------------------------
